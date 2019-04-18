@@ -1,0 +1,30 @@
+
+#include<stdio.h>
+//A structure for storing all details of processes.
+struct process
+{
+    int AT,BT,WT,BTbackup,CT,TAT,runcount;
+}p[10];//an array of objects of struct process
+int totaltime = 0;
+int prefinaltotal = 0;
+int n;
+void input()
+{
+    int i;
+	printf("\nEnter number of processes");
+	scanf("%d",&n);
+	printf("\nEnter arrival time of processes:");
+	for(i=0;i<n;i++)
+	{
+		printf("\nFor process %d:",i+1);
+		scanf("%d",&p[i].AT);
+	}
+	printf("\nEnter burst time for processes:");
+	for(i=0;i<n;i++)
+	{
+		printf("\nFor process %d:",i+1);
+		scanf("%d",&p[i].BT);
+		p[i].BTbackup=p[i].BTbackup;
+		prefinaltotal += p[i].BT;
+	}
+}
