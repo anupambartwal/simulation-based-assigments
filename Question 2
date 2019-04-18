@@ -43,3 +43,26 @@ int findlargest()
     return max;
 }
 
+// function to find the completion time of each process
+void findCT()
+{
+    int index;
+    int flag = 0;
+    while (1)
+    {
+        index = findlargest();
+        printf("Process executing at time %d is: P%d\n",totaltime,index + 1);
+        p[index].BT -= 1;
+        totaltime += 1;
+        if (p[index].BT == 0)
+        {
+            p[index].CT = totaltime;
+            printf(" Process P%d is completed at %d\n",p[index].id,totaltime);
+        }
+        // loop termination condition
+        if (totaltime == prefinaltotal)
+            break;
+    }
+}
+
+
