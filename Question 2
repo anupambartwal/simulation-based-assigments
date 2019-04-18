@@ -22,3 +22,24 @@ int compare(struct process p1,struct process p2)
     // compare the id of two processes to break tie
     return p1.id< p2.id;
 }
+
+// computing the largest burst Time among all the available processes
+int findlargest()
+{
+    int max = 0, i;
+    for (i = 0; i < 3; i++)
+    {
+        if (p[i].BT > p[max].BT)
+            max = i;
+        else if(p[max].BT==p[i].BT)
+        {
+            if(compare(p[i],p[max]))
+                max=i;
+        }
+        else
+            continue;
+    }
+    // returning the index of the process having the largest BT
+    return max;
+}
+
