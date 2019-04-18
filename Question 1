@@ -28,3 +28,32 @@ void input()
 		prefinaltotal += p[i].BT;
 	}
 }
+
+int compare(int i,int j)
+{
+    // compare the id of two processes to break tie
+    return p[i].AT< p[j].AT;
+}
+int findsmallest()
+{
+    int min = n, i;
+    p[min].BT=9999999;
+    for (i = 0; i <n; i++)
+    {
+        if(p[i].runcount==1)
+        {
+            continue;
+        }
+        if (p[i].BT < p[min].BT)
+            min = i;
+        else if(p[min].BT==p[i].BT)
+        {
+            if(compare(i,min))
+            min=i;
+        }
+        else
+            continue;
+    }
+    // returning the index of the process having the largest BT
+    return min;
+}
