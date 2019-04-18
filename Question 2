@@ -66,3 +66,37 @@ void findCT()
 }
 
 
+int main()
+{
+
+    int i;
+
+    // initializing the process number
+    p[0].id=2132;
+    p[1].id=2102;
+    p[2].id=2453;
+
+    // cout<<" Burst time of 4 processes : ";
+    p[0].BT=2;
+    p[1].BT=4;
+    p[2].BT=8;
+    for (i = 0; i < 3; i++)
+    {
+        // backup for displaying the output in last
+        // calculating total required time for terminating the function
+        p[i].BTbackup = p[i].BT;
+        prefinaltotal += p[i].BT;
+    }
+
+    // displaying the process before executing
+    printf("PNo\tID\tBT\n");
+
+    for (i = 0; i < 3; i++) {
+           printf("%d\t%d\t%d\n",i+1, p[i].id, p[i].BT);
+    }
+    printf("\n");
+    // calculating initial time when execution starts
+    totaltime += 0;
+
+    // calculating to terminate loop
+
