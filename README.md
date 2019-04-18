@@ -1,2 +1,2 @@
 # simulation-based-assigments
-This repo consists of two simulation Questions
+This repository consists of two simulation Questions
