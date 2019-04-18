@@ -57,3 +57,34 @@ int findsmallest()
     // returning the index of the process having the largest BT
     return min;
 }
+void SJF()
+{
+    int index;
+    int flag = 0;
+    for(index=0;index<n;index++)
+    {
+        p[index].runcount=0;
+    }
+    while (1)
+    {
+        index = findsmallest();
+        p[index].runcount=1;
+        printf("Process executing at time %d is: P%d\n",totaltime,index + 1);
+        totaltime += p[index].BT;
+        p[index].BT =0;
+        p[index].CT = totaltime;
+        printf(" Process P%d is completed at %d\n",index+1,totaltime);
+        // loop termination condition
+        if (totaltime == prefinaltotal)
+            break;
+    }
+}
+void RR(int tq)
+{
+    int count,remain=n,flag=0;
+    for(count=0;count<n;count++)
+    {
+        p[count].runcount=0;
+    }
+
+
