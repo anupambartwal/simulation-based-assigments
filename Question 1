@@ -28,7 +28,6 @@ void input()
 		prefinaltotal += p[i].BT;
 	}
 }
-
 int compare(int i,int j)
 {
     // compare the id of two processes to break tie
@@ -57,35 +56,6 @@ int findsmallest()
     // returning the index of the process having the largest BT
     return min;
 }
-void SJF()
-{
-    int index;
-    int flag = 0;
-    for(index=0;index<n;index++)
-    {
-        p[index].runcount=0;
-    }
-    while (1)
-    {
-        index = findsmallest();
-        p[index].runcount=1;
-        printf("Process executing at time %d is: P%d\n",totaltime,index + 1);
-        totaltime += p[index].BT;
-        p[index].BT =0;
-        p[index].CT = totaltime;
-        printf(" Process P%d is completed at %d\n",index+1,totaltime);
-        // loop termination condition
-        if (totaltime == prefinaltotal)
-            break;
-    }
-}
-void RR(int tq)
-{
-    int count,remain=n,flag=0;
-    for(count=0;count<n;count++)
-    {
-        p[count].runcount=0;
-    }
 void SJF()
 {
     int index;
@@ -146,5 +116,42 @@ void RR(int tq)
       count=0;
   }
 }
+int main()
+{
+	int i;
+	double avgT=0;
+	double avgW=0;
+	int minAT=0;
+	input();
+	//calculate minimum AT for initial time when execution starts
+	for(i=1;i<n;i++)
+        if(p[minAT].AT>p[i].AT)
+            minAT=i;
+	// calculating initial time when execution starts
+    totaltime += p[minAT].AT;
+    // calculating to terminate loop
+    prefinaltotal += p[minAT].AT;
 
-
+	printf("First Iteration(TQ=3)\n");
+	RR(3);
+	
+	printf("\nSecond Iteration(TQ=6)\n");
+	RR(6);
+	
+	printf("\nThird Iteration(SJF)\n");
+	SJF();
+	for(i=0;i<n;i++)
+	{
+		p[i].TAT=p[i].CT-p[i].AT;
+		p[i].WT=p[i].TAT-p[i].BTbackup;
+		printf("\nCompletion time for process%d:%d \n",i+1,p[i].CT);
+		printf("Turn around time for process:%d:%d \n",i+1,p[i].TAT);
+		printf("Waiting time for process:%d : %d \n",i+1,p[i].WT);
+		avgT=avgT+p[i].TAT;
+		avgW=avgW+p[i].WT;
+	}
+	avgT=avgT/n;
+	avgW=avgW/n;
+	printf("\nAverage turn around time: %f",avgT);
+	printf("\nAverage waiting time:%f",avgW);
+}
