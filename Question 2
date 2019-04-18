@@ -1,0 +1,24 @@
+//#include <bits/stdc++.h>
+#include<stdio.h>
+// creating a structure of a process
+struct process {
+    int id;
+    int BT;
+    int BTbackup;   // for backup purpose to print in last
+    int WT;
+    int TAT;
+    int CT;
+};
+// creating object's array for 3 processes.
+struct process p[3];
+
+// variable to find the total time
+int totaltime = 0;
+int prefinaltotal = 0;
+
+// comparator function for sort()
+int compare(struct process p1,struct process p2)
+{
+    // compare the id of two processes to break tie
+    return p1.id< p2.id;
+}
